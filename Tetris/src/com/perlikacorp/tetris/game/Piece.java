@@ -51,8 +51,12 @@ public class Piece {
 			for (int j=0;j<4;j++){
 				if (type[i][j]){
 					if (getGlobalY(i)<0) return true;
-					
-					if (board[getGlobalX(j)][getGlobalY(i)]) return true;
+					if (getGlobalX(j)<0) return true;
+					if (getGlobalX(j)>=10) return true;
+					if (board[getGlobalX(j)][getGlobalY(i)]){
+						return true;
+
+					}
 				}
 			}
 		}

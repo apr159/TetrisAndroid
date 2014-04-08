@@ -24,21 +24,33 @@ implements GameListener{
         Button izquierdaButton = new Button( getSkin(),"izquierda" );
         
         izquierdaButton.addListener( new ClickListener() {
-            @Override
-            public void clicked (InputEvent event, float x, float y)
-            {
-            	world.izquierda();
-            }
+        	 @Override
+         	public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+             	super.touchDown(event, x, y, pointer, button);
+             	world.izquierdaPressed();
+             	return true;
+             }
+             
+             @Override
+         	public void touchUp (InputEvent event, float x, float y, int pointer, int button){
+         		world.izquierdaDrop();
+         	}
         } );
         
         Button derechaButton = new Button( getSkin(),"derecha" );
         
         derechaButton.addListener( new ClickListener() {
-            @Override
-            public void clicked (InputEvent event, float x, float y)
-            {
-            	world.derecha();
-            }
+        	 @Override
+         	public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+             	super.touchDown(event, x, y, pointer, button);
+             	world.derechaPressed();
+             	return true;
+             }
+             
+             @Override
+         	public void touchUp (InputEvent event, float x, float y, int pointer, int button){
+         		world.derechaDrop();
+         	}       
         } );
         
         Button rotarButton = new Button( getSkin(),"rotar" );
@@ -62,6 +74,7 @@ implements GameListener{
             	return true;
             }
             
+            @Override
         	public void touchUp (InputEvent event, float x, float y, int pointer, int button){
         		world.normal();
         	}

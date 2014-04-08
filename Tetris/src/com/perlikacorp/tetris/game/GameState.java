@@ -35,7 +35,10 @@ public class GameState implements Pieces{
 	}
 	
 	public void rotateRight(){
-		
+		rotation--;
+		if (rotation<0) rotation = 3;
+		currentPiece.setPiece(PIECES[piece][rotation]);
+
 	}
 	
 	public void moveLeft(){
