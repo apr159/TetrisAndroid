@@ -58,9 +58,9 @@ public class World {
 	
 	private void checarColision(){
 		if (state.currentPiece.collidesBoard(state.tablero)){
-			state.currentPiece.pegarATablero(state.tablero);
+			state.currentPiece.pegarATablero(state.tablero,state.currentPiece.typePiece+1);
 			checarLinea();
-			state.setPiece();
+			state.nextPiece();
 			if (state.currentPiece.collidesBoard(state.tablero)){
 				if (listener!=null) listener.endGame();
 			}
@@ -72,7 +72,7 @@ public class World {
 			boolean lleno = true;
 			for (int j=0;j<GameState.FILAS;j++){
 	//			System.out.print(tablero[j][i] + " " );
-				if (!state.tablero[j][i]) lleno = false;
+				if (state.tablero[j][i]==0) lleno = false;
 				
 				
 				
@@ -87,9 +87,9 @@ public class World {
 	}
 	
 	private void vaciarFila(int fila){
-		state.score = state.score + 100;
+		aplicarPuntos();
 		for (int i=0;i<GameState.FILAS;i++){
-			state.tablero[i][fila] = false;
+			state.tablero[i][fila] = 0;
 		}
 	}
 	
@@ -98,6 +98,15 @@ public class World {
 			for (int j=0;j<GameState.FILAS;j++){
 				state.tablero[j][i] = state.tablero[j][i+1];
 			}
+		}
+	}
+	
+	private void aplicarPuntos(){
+		state.score = state.score + GameState.POINTS;
+		if (state.score>state.puntosObjetivo){
+			state.nivel++;
+			state.puntosObjetivo = GameState.INCREASE_POINTS*state.nivel;
+			state.timeStep = Math.max(0.1f,state.timeStep-GameState.REDUCE_TIME);
 		}
 	}
 

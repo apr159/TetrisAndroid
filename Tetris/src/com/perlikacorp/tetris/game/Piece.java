@@ -1,20 +1,41 @@
 package com.perlikacorp.tetris.game;
 
-public class Piece {
+public class Piece implements Pieces{
 
 	public boolean[][] type;
 	public int x,y;
+	int typePiece;
+	int rotation;
 	
-	public void setPiece(boolean[][] type){
-		this.type = type;
+	public void setPiece(int typePiece, int rotation){
+		this.typePiece = typePiece;
+		this.rotation = rotation;
+		this.type = PIECES[typePiece][rotation];
 			
 	}
 	
-	public void startPiece(boolean[][] type){
-		this.type = type;
+	public void startPiece(int typePiece, int rotation){
+		this.typePiece = typePiece;
+		this.rotation = rotation;
+
 		x = 5;
 		y = 18;
+		this.type =  PIECES[typePiece][rotation];
 			
+	}
+	
+	public void rotateLeft(){
+		rotation++;
+		if (rotation>=4) rotation = 0;
+		setPiece(typePiece,rotation);
+
+	}
+	
+	public void rotateRight(){
+		rotation--;
+		if (rotation<0) rotation = 3;
+		setPiece(typePiece,rotation);
+
 	}
 	
 	public void fall(){
@@ -45,7 +66,7 @@ public class Piece {
 	}
 
 	
-	public boolean collidesBoard(boolean[][] board){
+	public boolean collidesBoard(int[][] board){
 		
 		for (int i=0;i<4;i++){
 			for (int j=0;j<4;j++){
@@ -53,7 +74,7 @@ public class Piece {
 					if (getGlobalY(i)<0) return true;
 					if (getGlobalX(j)<0) return true;
 					if (getGlobalX(j)>=10) return true;
-					if (board[getGlobalX(j)][getGlobalY(i)]){
+					if (board[getGlobalX(j)][getGlobalY(i)]!=0){
 						return true;
 
 					}
@@ -64,12 +85,12 @@ public class Piece {
 		return false;
 	}
 	
-	public void pegarATablero(boolean[][] board){
+	public void pegarATablero(int[][] board, int piece){
 		y = y+1;
 		for (int i=0;i<4;i++){
 			for (int j=0;j<4;j++){
 				if (type[i][j] && getGlobalY(i)>=0){
-					board[getGlobalX(j)][getGlobalY(i)] =  true;
+					board[getGlobalX(j)][getGlobalY(i)] =  piece;
 				}
 			}
 		}

@@ -7,38 +7,44 @@ public class GameState implements Pieces{
 											
 	public static final float INITIAL_TIME = 1f;
 	public static final float REDUCE_TIME = 0.1f;
+	public static final int INCREASE_POINTS = 50;
+	public static final int POINTS = 100;
+
 	public static Random random = new Random();
 	public static final int FILAS = 10;
 	public static final int COLUMNAS = 20;
 	
-	boolean[][] tablero;
+	int[][] tablero;
 	
 	Piece currentPiece = new Piece();
-	int rotation;
-	int piece;
+	Piece nextPiece = new Piece();
+	//int rotation;
+	//int piece;
 	public int score;
+	int puntosObjetivo;
 	float timeStep;
+	int nivel;
 	
 	public GameState(){
-		tablero = new boolean[FILAS][COLUMNAS];
-		rotation = 0;
+		tablero = new int[FILAS][COLUMNAS];
+		int rotation = 0;
+		int piece = random.nextInt(NUM_PIECES);
+		currentPiece.startPiece(piece,rotation);
 		piece = random.nextInt(NUM_PIECES);
-		currentPiece.startPiece(PIECES[piece][rotation]);
+		nextPiece.startPiece(piece,rotation);
+		
 		timeStep = INITIAL_TIME;
 		score = 0;
+		nivel = 1;
+		puntosObjetivo = INCREASE_POINTS;
 	}
 	
 	public void rotateLeft(){
-		rotation++;
-		if (rotation>=4) rotation = 0;
-		currentPiece.setPiece(PIECES[piece][rotation]);
+		currentPiece.rotateLeft();
 	}
 	
 	public void rotateRight(){
-		rotation--;
-		if (rotation<0) rotation = 3;
-		currentPiece.setPiece(PIECES[piece][rotation]);
-
+		currentPiece.rotateRight();
 	}
 	
 	public void moveLeft(){
@@ -60,11 +66,12 @@ public class GameState implements Pieces{
 		currentPiece.y--;
 	}
 	
-	public void setPiece(){
-		rotation = 0;
-		piece = random.nextInt(NUM_PIECES);
-		currentPiece.startPiece(PIECES[piece][rotation]);
+	public void nextPiece(){
+		currentPiece.startPiece(nextPiece.typePiece,0);
+		int piece = random.nextInt(NUM_PIECES);
+		nextPiece.startPiece(piece,0);
 
 	}
+	
 	
 }

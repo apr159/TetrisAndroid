@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
  */
 public class WorldRenderer {
 	
-    
+    private static final String[] COLORS = {"white","green","blue","orange","pink","purple","red","gray"};
     /**
      * Referencia al modelo
      */
@@ -69,15 +69,15 @@ public class WorldRenderer {
     	
     	
     	
-    	font.draw(batch, "Puntos: " + world.state.score, 0, 750);
+    	font.draw(batch, "Puntos: " + world.state.score, 0, 780);
+    	font.draw(batch, "Nivel: " + world.state.nivel, 300, 780);
+
+    	font.draw(batch, "Siguiente: ", 0, 740);
     	
     	//Dibujar tablero
     	for (i=0;i<GameState.COLUMNAS;i++){
     		for (j=0;j<GameState.FILAS;j++){
-    			if (world.state.tablero[j][i])
-    				batch.draw(atlas.findRegion("darkgray"), 80+32*j, 64+32*i,32,32);
-    			else
-    				batch.draw(atlas.findRegion("white"), 80+32*j, 64+32*i,32,32);
+    			batch.draw(atlas.findRegion(COLORS[world.state.tablero[j][i]]), 80+32*j, 64+32*i,32,32);
     		}
     	}
         
@@ -86,13 +86,23 @@ public class WorldRenderer {
     	for (i=0;i<4;i++){
     		for(j=0;j<4;j++){
     			if (world.state.currentPiece.type[i][j]){
-    				batch.draw(atlas.findRegion("blue"), 80+32*(piece.x+(j-2)),64+(piece.y+(i-2))*32,32,32);
+    				batch.draw(atlas.findRegion(COLORS[world.state.currentPiece.typePiece+1]), 80+32*(piece.x+(j-2)),64+(piece.y+(i-2))*32,32,32);
     			}//else{
     				//batch.draw(atlas.findRegion("white"), 80+32*(piece.x+(j-2)),64+(piece.y+(i-2))*32,32,32);
     			//}
     		}
     	}
     	
+    	//Dibujar pieza
+    	for (i=0;i<4;i++){
+    		for(j=0;j<4;j++){
+    			if (world.state.nextPiece.type[i][j]){
+    				batch.draw(atlas.findRegion(COLORS[world.state.nextPiece.typePiece+1]), 200+16*((j-2)),730+((i-2))*16,16,16);
+    			}//else{
+    				//batch.draw(atlas.findRegion("white"), 80+32*(piece.x+(j-2)),64+(piece.y+(i-2))*32,32,32);
+    			//}
+    		}
+    	}
     	
         batch.end();
         
