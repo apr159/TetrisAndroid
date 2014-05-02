@@ -14,6 +14,6 @@ public class GwtLauncher extends GwtApplication {
 
 	@Override
 	public ApplicationListener getApplicationListener () {
-		return new TetrisGame();
+		return new TetrisGame(new MyGoogleInterface());
 	}
 }

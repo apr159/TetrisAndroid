@@ -10,6 +10,6 @@ public class Main {
 		cfg.width = 480;
 		cfg.height = 800;
 		
-		new LwjglApplication(new TetrisGame(), cfg);
+		new LwjglApplication(new TetrisGame(new MyGoogleInterface()), cfg);
 	}
 }

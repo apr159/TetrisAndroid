@@ -7,6 +7,8 @@ public class World {
 	
 	public interface GameListener{
 		public void endGame();
+		public void explosion();
+		public void pegadoATablero();
 	}
 	GameListener listener;
 	public void addGameListener(GameListener listener){
@@ -24,6 +26,7 @@ public class World {
 	private static final float MAX_PRESS_TIME = 0.1f;
 	
 	public void update(float delta){
+		if (state.pausa) return;
 		time+=delta;
 		if (time>=state.timeStep){
 			time = 0;
@@ -59,7 +62,11 @@ public class World {
 	private void checarColision(){
 		if (state.currentPiece.collidesBoard(state.tablero)){
 			state.currentPiece.pegarATablero(state.tablero,state.currentPiece.typePiece+1);
-			checarLinea();
+			if (checarLinea()){
+				listener.explosion();
+			}else{
+				listener.pegadoATablero();
+			}
 			state.nextPiece();
 			if (state.currentPiece.collidesBoard(state.tablero)){
 				if (listener!=null) listener.endGame();
@@ -67,7 +74,8 @@ public class World {
 		}
 	}
 	
-	private void checarLinea(){
+	private boolean checarLinea(){
+		boolean alguno = false;
 		for (int i=0;i<GameState.COLUMNAS;i++){
 			boolean lleno = true;
 			for (int j=0;j<GameState.FILAS;j++){
@@ -81,9 +89,11 @@ public class World {
 			if (lleno){
 				vaciarFila(i);
 				aplicarGravedad(i);
+				alguno = true;
 				i = i-1;
 			}
 		}
+		return alguno;
 	}
 	
 	private void vaciarFila(int fila){
@@ -147,5 +157,16 @@ public class World {
 	
 	public void reiniciar(){
 		state = new GameState();
+	}
+	
+	public void pausa(){
+		state.pausa = true;
+	}
+	public void retornar(){
+		state.pausa = false;
+	}
+	
+	public boolean enPausa(){
+		return state.pausa;
 	}
 }

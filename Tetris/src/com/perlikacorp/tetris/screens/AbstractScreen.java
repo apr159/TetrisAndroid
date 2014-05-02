@@ -1,7 +1,10 @@
 package com.perlikacorp.tetris.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -181,5 +184,60 @@ public class AbstractScreen implements Screen{
 	     if (atlas!=null) atlas.dispose();
 
 	 }
+	 
+	 protected void setBackAction(){
+		 InputMultiplexer multiplexer = new InputMultiplexer();
+		 multiplexer.addProcessor(stage);
+		 multiplexer.addProcessor(new MyInputProcessor());
+		 Gdx.input.setInputProcessor(multiplexer);	
+	     Gdx.input.setCatchBackKey(true);
+
+	 }
+	 protected void backAction(){}
+	 class MyInputProcessor implements InputProcessor{
+			@Override
+			public boolean keyDown(int keycode) {
+				return true;
+			}
+
+			@Override
+			public boolean keyUp(int keycode) {
+				
+				if (keycode==Keys.BACK || keycode==Keys.ENTER){
+					  backAction();
+					}
+				return true;
+			}
+
+			@Override
+			public boolean keyTyped(char character) {
+				return false;
+			}
+
+			@Override
+			public boolean touchDown(int screenX, int screenY, int pointer,
+					int button) {
+				return true;
+			}
+
+			@Override
+			public boolean touchUp(int screenX, int screenY, int pointer,
+					int button) {		
+				return false;
+			}
+
+			@Override
+			public boolean touchDragged(int screenX, int screenY,
+					int pointer) {
+				return false;
+			}
+
+			@Override
+			public boolean mouseMoved(int screenX, int screenY) {return false;}
+
+			@Override
+			public boolean scrolled(int amount) {return false;}
+		}
+
 
 }

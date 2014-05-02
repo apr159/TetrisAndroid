@@ -1,5 +1,7 @@
 package com.perlikacorp.tetris.screens;
 
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -8,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.perlikacorp.tetris.services.MusicManager.GameMusic;
 import com.perlikacorp.tetris.TetrisGame;
+import com.perlikacorp.tetris.services.TetrisSound;
 
 
 /**
@@ -38,6 +42,9 @@ public class SplashScreen extends AbstractScreen {
 	    game.manager.load("game.atlas", com.badlogic.gdx.graphics.g2d.TextureAtlas.class);
 	    game.manager.load("default-32.fnt", BitmapFont.class);
 	//    game.manager.load("default-16.fnt", BitmapFont.class);
+	    game.getAssetManager().load(TetrisSound.DESTROY.getFileName(), Sound.class);
+	    game.getAssetManager().load(TetrisSound.DOWN.getFileName(), Sound.class);
+	    game.getAssetManager().load(GameMusic.GAME.getFileName(), Music.class);
 
 
 	    super.resize(800,480);
@@ -56,7 +63,7 @@ public class SplashScreen extends AbstractScreen {
 									                    float delta )
 									                {
 									                	game.loadWorld();
-									                	game.setScreen(new GameScreen(game));
+									                	game.setScreen(new MenuScreen(game));
 									                    return true;
 									                }
 									            } ) );	   

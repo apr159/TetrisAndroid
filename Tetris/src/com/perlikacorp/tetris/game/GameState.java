@@ -24,6 +24,7 @@ public class GameState implements Pieces{
 	int puntosObjetivo;
 	float timeStep;
 	int nivel;
+	boolean pausa;
 	
 	public GameState(){
 		tablero = new int[FILAS][COLUMNAS];
@@ -32,6 +33,7 @@ public class GameState implements Pieces{
 		currentPiece.startPiece(piece,rotation);
 		piece = random.nextInt(NUM_PIECES);
 		nextPiece.startPiece(piece,rotation);
+		pausa = false;
 		
 		timeStep = INITIAL_TIME;
 		score = 0;

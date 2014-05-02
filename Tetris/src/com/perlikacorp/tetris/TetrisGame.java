@@ -7,6 +7,9 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.perlikacorp.tetris.game.World;
 import com.perlikacorp.tetris.game.WorldRenderer;
 import com.perlikacorp.tetris.screens.SplashScreen;
+import com.perlikacorp.tetris.services.MusicManager;
+import com.perlikacorp.tetris.services.PreferencesManager;
+import com.perlikacorp.tetris.services.SoundManager;
 
 public class TetrisGame extends Game {
 
@@ -43,11 +46,30 @@ public class TetrisGame extends Game {
      */
     public AssetManager manager = new AssetManager();
     
+    /**
+     * Administrador de preferencias de usuario
+     */
+    private PreferencesManager preferencesManager;
+    
+    /**
+     * Administrador de sonidos
+     */
+    private SoundManager soundManager;
+    
+    /**
+     * Administrador de musica
+     */
+    private MusicManager musicManager;
+
+    private GoogleInterface googleInterface;
+    
     
     /**
      * Constructor
      */
-    public TetrisGame(){}
+    public TetrisGame(GoogleInterface googleInterface){
+    	this.googleInterface = googleInterface;
+    }
     
 
 
@@ -55,11 +77,55 @@ public class TetrisGame extends Game {
     	return manager;
     }
     
+    /**
+     * @return el administrador de preferencias
+     */
+    public PreferencesManager getPreferencesManager()
+    {
+        return preferencesManager;
+    }
+
+    /**
+     * @return el administrador de musica
+     */
+    public MusicManager getMusicManager()
+    {
+        return musicManager;
+    }
+
+
+    /**
+     * @return el administrador de sonidos
+     */
+    public SoundManager getSoundManager()
+    {
+        return soundManager;
+    }
+    
+    /**
+     * @return la interface de google
+     */
+    public GoogleInterface getGoogleInterface(){
+    	return googleInterface;
+    }
 
     @Override
     public void create()
     {
     	Gdx.app.log( TetrisGame.LOG, "Creando juego en " + Gdx.app.getType() );
+        // 1. crea el administrador de preferencias
+        preferencesManager = new PreferencesManager();
+        
+        // 2. crea el administrador de musica
+        musicManager = new MusicManager(manager);
+        musicManager.setVolume( preferencesManager.getVolume() );
+        musicManager.setEnabled( preferencesManager.isMusicEnabled() );
+
+        // 3. crea el administrador de sonidos
+        soundManager = new SoundManager(manager);
+        soundManager.setVolume( preferencesManager.getVolume() );
+        soundManager.setEnabled( preferencesManager.isSoundEnabled() );
+
     }
 
     /**
