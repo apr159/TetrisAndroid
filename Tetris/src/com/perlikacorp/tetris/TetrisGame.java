@@ -126,6 +126,7 @@ public class TetrisGame extends Game {
         soundManager.setVolume( preferencesManager.getVolume() );
         soundManager.setEnabled( preferencesManager.isSoundEnabled() );
 
+        googleInterface.Login();
     }
 
     /**

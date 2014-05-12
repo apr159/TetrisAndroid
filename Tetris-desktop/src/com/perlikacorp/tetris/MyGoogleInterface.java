@@ -16,20 +16,17 @@ public class MyGoogleInterface implements GoogleInterface{
 	}
 
 	@Override
-	public void submitScore(int score) {
+	public void submitScore(String leaderboard, int score) {
 	}
 
 	@Override
-	public void getScores() {
+	public void getScores(String leaderboard) {
 	}
 
 	@Override
 	public void getAchievements() {
 	}
 
-	@Override
-	public void getScoresData() {
-	}
 
 	@Override
 	public void unlockAchievement(String ach) {

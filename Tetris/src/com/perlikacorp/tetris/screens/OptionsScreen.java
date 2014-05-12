@@ -72,7 +72,6 @@ public class OptionsScreen extends AbstractScreen
                 musicCheckbox.setChecked(enabled);
                 game.getPreferencesManager().setMusicEnabled( enabled );
                 game.getMusicManager().setEnabled( enabled );
-
                 // if the music is now enabled, start playing the menu music
                 if( enabled ) game.getMusicManager().play( GameMusic.GAME );
             }

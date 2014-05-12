@@ -12,6 +12,11 @@ package com.perlikacorp.tetris;
  */
 
 public interface GoogleInterface {
+	
+	public static final String PUNTOS_LEADERBOARD = "CgkIgt_EldIDEAIQAQ";
+	public static final String LINEAS_LEADERBOARD = "CgkIgt_EldIDEAIQBw";
+	public static final String TIEMPO_LEADERBOARD = "CgkIgt_EldIDEAIQCA";
+	public static final String TIEMPO_LINEA_1_LEADERBOARD = "CgkIgt_EldIDEAIQCQ";
 
 	/**
 	 * Intenta un login en google game services
@@ -33,12 +38,12 @@ public interface GoogleInterface {
 	 * sube una puntuacion a la tabla de puntuaciones
 	 * @param score los puntos
 	 */
-	public void submitScore(int score);
+	public void submitScore(String leaderboard, int score);
 	
 	/**
 	 * Obtiene los puntos y los dibuja en la pantalla base de android
 	 */
-	public void getScores();
+	public void getScores(String leaderboard);
 	
 	/**
 	 * Retorna los logros obtenidos por el usuario y lo dibuja en la pantalla base de android
@@ -46,10 +51,6 @@ public interface GoogleInterface {
 	public void getAchievements();
 	
 	
-	/**
-	 * retorna la puntuacion obtendia
-	 */
-	public void getScoresData();
 	
 	/**
 	 * Desbloquea un logro

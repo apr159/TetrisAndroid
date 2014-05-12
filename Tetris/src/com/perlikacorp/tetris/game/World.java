@@ -25,9 +25,16 @@ public class World {
 	private float pressTime = 0;
 	private static final float MAX_PRESS_TIME = 0.1f;
 	
+	public void startGame(){
+		state = new GameState();
+		time = 0;
+		pressTime = 0;
+	}
+	
 	public void update(float delta){
 		if (state.pausa) return;
 		time+=delta;
+		state.time+=delta;
 		if (time>=state.timeStep){
 			time = 0;
 			state.moveDown();
@@ -89,6 +96,7 @@ public class World {
 			if (lleno){
 				vaciarFila(i);
 				aplicarGravedad(i);
+				state.lines++;
 				alguno = true;
 				i = i-1;
 			}

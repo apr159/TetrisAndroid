@@ -7,7 +7,7 @@ public class GameState implements Pieces{
 											
 	public static final float INITIAL_TIME = 1f;
 	public static final float REDUCE_TIME = 0.1f;
-	public static final int INCREASE_POINTS = 50;
+	public static final int INCREASE_POINTS = 500;
 	public static final int POINTS = 100;
 
 	public static Random random = new Random();
@@ -23,6 +23,8 @@ public class GameState implements Pieces{
 	public int score;
 	int puntosObjetivo;
 	float timeStep;
+	public float time;
+	public int lines;
 	int nivel;
 	boolean pausa;
 	
@@ -38,6 +40,8 @@ public class GameState implements Pieces{
 		timeStep = INITIAL_TIME;
 		score = 0;
 		nivel = 1;
+		lines = 0;
+		time = 0f;
 		puntosObjetivo = INCREASE_POINTS;
 	}
 	

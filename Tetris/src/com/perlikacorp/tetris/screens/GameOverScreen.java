@@ -7,13 +7,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.perlikacorp.tetris.GoogleInterface;
 import com.perlikacorp.tetris.TetrisGame;
 
 public class GameOverScreen extends AbstractGameScreen {
 
 	public GameOverScreen(final TetrisGame game) {
 		super(game);
-        Table table = super.getTable();
+        GoogleInterface gi = game.getGoogleInterface();
+		gi.submitScore(GoogleInterface.PUNTOS_LEADERBOARD, world.state.score);
+		gi.submitScore(GoogleInterface.TIEMPO_LEADERBOARD, (int)world.state.time);
+		gi.submitScore(GoogleInterface.LINEAS_LEADERBOARD, world.state.lines);
+	
+		Table table = super.getTable();
         
         Label label = new Label("Fin de Juego",getSkin(),"title");
         

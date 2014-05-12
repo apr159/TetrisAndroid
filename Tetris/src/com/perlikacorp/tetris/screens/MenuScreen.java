@@ -63,6 +63,18 @@ public class MenuScreen extends AbstractScreen {
 	        table.add( opcionesButton ).size( 300, 80 );
 	        table.row();
 	        
+	        TextButton leaderboardButton = new TextButton("Mejores",getSkin());
+	        leaderboardButton.addListener(new ClickListener(){
+	            public void clicked (InputEvent event, float x, float y)
+	            {
+	            	game.setScreen(new ScoresScreen(game));
+	            }
+
+	        });
+	        
+	        table.add( leaderboardButton ).size( 300, 80 );
+	        table.row();
+	        
 	       final ClickListener yesListener = new ClickListener(){
 	        	public void clicked (InputEvent event, float x, float y)
 	            {

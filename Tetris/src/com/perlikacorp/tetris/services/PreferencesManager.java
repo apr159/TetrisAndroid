@@ -9,7 +9,8 @@ public class PreferencesManager
     private static final String PREF_VOLUME = "volume";
     private static final String PREF_MUSIC_ENABLED = "music.enabled";
     private static final String PREF_SOUND_ENABLED = "sound.enabled";
-    private static final String PREFS_NAME = "Tetris";
+    private static final String PREFS_NAME = "tetris";
+    Preferences preferences;
 
     public PreferencesManager()
     {
@@ -17,8 +18,9 @@ public class PreferencesManager
 
     protected Preferences getPrefs()
     {
-        return Gdx.app.getPreferences( PREFS_NAME );
-    }
+    	if (preferences == null)
+    		preferences = Gdx.app.getPreferences(PREFS_NAME);
+        return preferences;    }
 
     public boolean isSoundEnabled()
     {
