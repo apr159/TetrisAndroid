@@ -104,10 +104,10 @@ public class WorldRenderer {
     			//}
     		}
     	}
-    	font.draw(batch, "Objetivo: " + world.state.puntosObjetivo, 0, 700);
-    	font.draw(batch, "Velocidad: " + world.state.timeStep, 0, 650);
-    	font.draw(batch, "Lineas: " + world.state.lines, 0, 600);
-    	font.draw(batch, "Tiempo: " + world.state.time, 0, 550);
+    	//font.draw(batch, "Objetivo: " + world.state.puntosObjetivo, 0, 700);
+    	//font.draw(batch, "Velocidad: " + world.state.timeStep, 0, 650);
+    	//font.draw(batch, "Lineas: " + world.state.lines, 0, 600);
+    	//font.draw(batch, "Tiempo: " + world.state.time, 0, 550);
     	
         batch.end();
         

@@ -18,7 +18,7 @@ public class MusicManager
      */
     public enum GameMusic
     {
-        GAME( "sounds/music.wav" );
+        GAME( "sounds/music.mp3" );
 
         private String fileName;
         private Music musicResource;

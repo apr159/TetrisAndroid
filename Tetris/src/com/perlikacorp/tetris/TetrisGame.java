@@ -9,6 +9,7 @@ import com.perlikacorp.tetris.game.WorldRenderer;
 import com.perlikacorp.tetris.screens.SplashScreen;
 import com.perlikacorp.tetris.services.MusicManager;
 import com.perlikacorp.tetris.services.PreferencesManager;
+import com.perlikacorp.tetris.services.ProfileManager;
 import com.perlikacorp.tetris.services.SoundManager;
 
 public class TetrisGame extends Game {
@@ -62,7 +63,8 @@ public class TetrisGame extends Game {
     private MusicManager musicManager;
 
     private GoogleInterface googleInterface;
-    
+
+    private ProfileManager profileManager;
     
     /**
      * Constructor
@@ -102,6 +104,10 @@ public class TetrisGame extends Game {
         return soundManager;
     }
     
+    public ProfileManager getProfileManager(){
+    	return profileManager;
+    }
+    
     /**
      * @return la interface de google
      */
@@ -115,6 +121,7 @@ public class TetrisGame extends Game {
     	Gdx.app.log( TetrisGame.LOG, "Creando juego en " + Gdx.app.getType() );
         // 1. crea el administrador de preferencias
         preferencesManager = new PreferencesManager();
+        profileManager = new ProfileManager();
         
         // 2. crea el administrador de musica
         musicManager = new MusicManager(manager);
@@ -133,7 +140,7 @@ public class TetrisGame extends Game {
      * Crea un nuevo modelo y vista
      */
     public void loadWorld(){
-	    world = new World();
+	    world = new World(profileManager.retrieveProfile());
 	    renderer = new WorldRenderer(world, manager);
 
     }

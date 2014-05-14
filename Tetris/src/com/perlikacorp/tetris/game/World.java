@@ -3,6 +3,7 @@ package com.perlikacorp.tetris.game;
 public class World {
 
 	public GameState state;
+	public TopScores topScores;
 	boolean derechaPressed, izquierdaPressed;
 	
 	public interface GameListener{
@@ -16,8 +17,9 @@ public class World {
 	}
 	
 	
-	public World(){
+	public World(TopScores topScores){
 		state = new GameState();
+		this.topScores = topScores;
 		time = 0;
 		pressTime = 0;
 	}

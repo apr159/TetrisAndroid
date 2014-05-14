@@ -22,6 +22,14 @@ public class GameOverScreen extends AbstractGameScreen {
 		Table table = super.getTable();
         
         Label label = new Label("Fin de Juego",getSkin(),"title");
+        Label ptsLabel = new Label("Obtuviste " + world.state.lines + " lineas",getSkin(),"title");
+        Label mejorLabel = new Label("Mejor: " + world.topScores.lineas + " lineas",getSkin(),"title");
+        
+        if (world.state.lines>world.topScores.lineas){
+        	world.topScores.lineas=world.state.lines;
+        	game.getProfileManager().persist();
+        	mejorLabel.setText("Maximas lineas");
+        }
         
         TextButton botonReinicio = new TextButton("Reiniciar",getSkin());
         
@@ -34,10 +42,28 @@ public class GameOverScreen extends AbstractGameScreen {
             }
  
         });
+        TextButton botonBack = new TextButton("Regresar",getSkin());
+        
+        botonBack.addListener(new ClickListener(){
+            @Override
+            public void clicked (InputEvent event, float x, float y)
+            {
+            	
+            	game.setScreen(new MenuScreen(game));
+            }
+ 
+        });
+ 
         table.add(label);
         table.row();
+        table.add(ptsLabel);
+        table.row();
+        table.add(mejorLabel);
+        table.row();
+
         table.add(botonReinicio);
         table.row();
+        table.add(botonBack);
         
 
 	}
