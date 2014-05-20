@@ -140,7 +140,7 @@ implements GameListener{
 	@Override
 	public void explosion() {
 		if (world.state.lines==1){
-			game.getGoogleInterface().submitScore(GoogleInterface.TIEMPO_LINEA_1_LEADERBOARD, (int)world.state.time);
+			game.getGoogleInterface().submitScore(GoogleInterface.TIEMPO_LINEA_1_LEADERBOARD, (int)world.state.time*1000);
 		}
 		game.getSoundManager().play(TetrisSound.DESTROY);
 		

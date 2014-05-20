@@ -33,7 +33,7 @@ implements GoogleInterface,GameHelperListener{
     }
 
 	@Override
-	public void Login() {
+	public void Login(SignInListener listener) {
 		try {
     		runOnUiThread(new Runnable(){
 

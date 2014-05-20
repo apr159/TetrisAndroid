@@ -3,7 +3,7 @@ package com.perlikacorp.tetris;
 public class MyGoogleInterface implements GoogleInterface{
 
 	@Override
-	public void Login() {
+	public void Login(SignInListener listener) {
 	}
 
 	@Override

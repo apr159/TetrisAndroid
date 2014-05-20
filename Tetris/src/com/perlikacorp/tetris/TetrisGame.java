@@ -66,6 +66,7 @@ public class TetrisGame extends Game {
 
     private ProfileManager profileManager;
     
+    
     /**
      * Constructor
      */
@@ -133,7 +134,7 @@ public class TetrisGame extends Game {
         soundManager.setVolume( preferencesManager.getVolume() );
         soundManager.setEnabled( preferencesManager.isSoundEnabled() );
 
-        googleInterface.Login();
+        
     }
 
     /**
@@ -142,6 +143,21 @@ public class TetrisGame extends Game {
     public void loadWorld(){
 	    world = new World(profileManager.retrieveProfile());
 	    renderer = new WorldRenderer(world, manager);
+	    
+	    SignInListener listener = new SignInListener(){
+			@Override
+			public void succed() {
+				getGoogleInterface().submitScore(GoogleInterface.LINEAS_LEADERBOARD, 
+						world.topScores.lineas);
+			}
+
+			@Override
+			public void fail() {
+			}
+        	
+        };
+        
+        googleInterface.Login(listener);
 
     }
     

@@ -1,11 +1,12 @@
 package com.perlikacorp.tetris.client;
 
 import com.perlikacorp.tetris.GoogleInterface;
+import com.perlikacorp.tetris.SignInListener;
 
 public class MyGoogleInterface implements GoogleInterface{
 
 	@Override
-	public void Login() {
+	public void Login(SignInListener listener) {
 	}
 
 	@Override

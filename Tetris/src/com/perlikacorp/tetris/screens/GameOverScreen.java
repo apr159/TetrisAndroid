@@ -16,7 +16,7 @@ public class GameOverScreen extends AbstractGameScreen {
 		super(game);
         GoogleInterface gi = game.getGoogleInterface();
 		gi.submitScore(GoogleInterface.PUNTOS_LEADERBOARD, world.state.score);
-		gi.submitScore(GoogleInterface.TIEMPO_LEADERBOARD, (int)world.state.time);
+		gi.submitScore(GoogleInterface.TIEMPO_LEADERBOARD, (int)world.state.time*1000);
 		gi.submitScore(GoogleInterface.LINEAS_LEADERBOARD, world.state.lines);
 	
 		Table table = super.getTable();

@@ -21,7 +21,7 @@ public interface GoogleInterface {
 	/**
 	 * Intenta un login en google game services
 	 */
-	public void Login();
+	public void Login(SignInListener listener);
 	
 	/**
 	 * Intenta un logout en google game services

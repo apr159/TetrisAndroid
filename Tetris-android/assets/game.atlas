@@ -3,80 +3,106 @@ game.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+slide1
+  rotate: false
+  xy: 1, 199
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+slide2
+  rotate: false
+  xy: 483, 199
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
 blue
   rotate: false
-  xy: 1, 1
+  xy: 1, 133
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 darkgray
   rotate: false
-  xy: 67, 1
+  xy: 1, 67
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 gray
   rotate: false
-  xy: 133, 1
+  xy: 67, 133
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 green
   rotate: false
-  xy: 199, 1
+  xy: 1, 1
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 lightblue
   rotate: false
-  xy: 265, 1
+  xy: 67, 67
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 orange
   rotate: false
-  xy: 331, 1
+  xy: 133, 133
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 pink
   rotate: false
-  xy: 397, 1
+  xy: 67, 1
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 purple
   rotate: false
-  xy: 463, 1
+  xy: 133, 67
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 red
   rotate: false
-  xy: 529, 1
+  xy: 199, 133
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 red2
   rotate: false
-  xy: 595, 1
+  xy: 133, 1
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 white
   rotate: false
-  xy: 661, 1
+  xy: 199, 67
   size: 64, 64
   orig: 64, 64
+  offset: 0, 0
+  index: -1
+
+game2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+slide3
+  rotate: false
+  xy: 1, 1
+  size: 480, 800
+  orig: 480, 800
   offset: 0, 0
   index: -1
